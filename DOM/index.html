@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        #info {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Manipulation in JavaScript</h1>
+    
+    <p id="para1">This is the first paragraph.</p>
+    <p>This is the second paragraph.</p>
+    <button id="changeColorBtn">Change Background Color</button>
+    <div id="info"></div>
+
+    <script>
+        // 1. Accessing DOM elements using various methods
+        let para1 = document.getElementById("para1");  // Access by ID
+        let button = document.querySelector("#changeColorBtn");  // Access by CSS selector
+        let infoDiv = document.getElementById("info");
+
+        // 2. Changing content using DOM manipulation
+        para1.innerHTML = "This is the first paragraph, and I was changed using JavaScript.";  // Changing text content
+        
+        // 3. Changing style
+        para1.style.color = "blue";  // Changing style of an element
+        para1.style.fontWeight = "bold";
+
+        // 4. Adding event listeners to interact with elements
+        button.addEventListener("click", function() {
+            document.body.style.backgroundColor = "lightblue";  // Change background color on button click
+            infoDiv.innerHTML = "The background color has been changed!";
+        });
+
+        // 5. Creating new elements and adding them to the DOM
+        let newPara = document.createElement("p");  // Create a new paragraph element
+        newPara.innerText = "This paragraph was dynamically created!";
+        document.body.appendChild(newPara);  // Append the new element to the body
+
+        // 6. Modifying attributes of an element
+        let newButton = document.createElement("button");
+        newButton.innerText = "Click to Reset Color";
+        newButton.setAttribute("id", "resetColorBtn");
+        document.body.appendChild(newButton);
+
+        // 7. Removing an element from the DOM
+        let removeButton = document.createElement("button");
+        removeButton.innerText = "Remove First Paragraph";
+        document.body.appendChild(removeButton);
+        
+        removeButton.addEventListener("click", function() {
+            document.body.removeChild(para1);  // Removing the first paragraph
+            infoDiv.innerHTML = "The first paragraph has been removed!";
+        });
+
+        // 8. Traversing the DOM (accessing parent, child, and sibling nodes)
+        let secondPara = document.querySelector("p:nth-of-type(2)");
+        let parent = secondPara.parentNode;  // Accessing parent element
+        let sibling = secondPara.nextElementSibling;  // Accessing next sibling
+        let firstChild = parent.firstElementChild;  // Accessing first child of the parent
+        
+        // Display DOM traversal info
+        infoDiv.innerHTML += `<br>Parent Node of second paragraph: ${parent.tagName}`;
+        infoDiv.innerHTML += `<br>Next sibling of second paragraph: ${sibling ? sibling.tagName : 'None'}`;
+        infoDiv.innerHTML += `<br>First child of parent: ${firstChild ? firstChild.tagName : 'None'}`;
+    </script>
+
+</body>
+</html>

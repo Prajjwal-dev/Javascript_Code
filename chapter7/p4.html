@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change <li> Background Color</title>
+</head>
+<body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+
+    <script>
+        // Select all <li> elements
+        const listItems = document.querySelectorAll('li');
+
+        // Loop through each <li> element and change the background color to cyan
+        listItems.forEach(item => {
+            item.style.backgroundColor = 'cyan';
+        });
+    </script>
+
+</body>
+</html>

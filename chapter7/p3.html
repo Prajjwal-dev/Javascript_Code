@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change First and Last Child Colors</title>
+    <style>
+        .child {
+            padding: 10px;
+            border: 1px solid black;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="parent">
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
+        <div class="child">Child 3</div>
+    </div>
+
+    <script>
+        // Select the parent element
+        const parent = document.getElementById('parent');
+
+        // Select the first and last child elements
+        const firstChild = parent.firstElementChild;
+        const lastChild = parent.lastElementChild;
+
+        // Change the color of the first and last child elements
+        firstChild.style.color = 'green';
+        lastChild.style.color = 'green';
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM and Events Example</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+        .red-text {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-title">Welcome to the DOM Manipulation Page</h1>
+    <button id="change-title">Change Title Color</button>
+
+    <div id="content">
+        <p class="text">This is a paragraph. Click it to highlight!</p>
+        <p class="text">Another paragraph. Double-click to remove the highlight.</p>
+        <ul id="item-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+        <button id="add-item">Add New Item</button>
+    </div>
+
+    <form id="sample-form">
+        <label for="input-text">Enter Text:</label>
+        <input type="text" id="input-text" placeholder="Type here...">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // 1. Selecting Elements
+        const title = document.getElementById('main-title');
+        const paragraphs = document.querySelectorAll('.text');
+        const itemList = document.getElementById('item-list');
+        const inputText = document.getElementById('input-text');
+        
+        // 2. Changing Content and Style
+        document.getElementById('change-title').addEventListener('click', () => {
+            title.textContent = "Title Color Changed!";
+            title.style.color = title.style.color === 'blue' ? 'black' : 'blue';
+        });
+
+        // 3. Adding and Removing Classes
+        paragraphs.forEach((para) => {
+            para.addEventListener('click', () => {
+                para.classList.toggle('highlight'); // Toggles highlight on click
+            });
+
+            para.addEventListener('dblclick', () => {
+                para.classList.remove('highlight'); // Removes highlight on double-click
+            });
+        });
+
+        // 4. Creating, Appending, and Removing Elements
+        document.getElementById('add-item').addEventListener('click', () => {
+            const newItem = document.createElement('li');
+            newItem.textContent = `Item ${itemList.children.length + 1}`;
+            itemList.appendChild(newItem);
+        });
+
+        // 5. Form Event Handling
+        const form = document.getElementById('sample-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevents form from submitting to a new page
+            alert(`Submitted text: ${inputText.value}`);
+            inputText.value = ''; // Clears the input field after submission
+        });
+
+        // 6. Traversing the DOM
+        itemList.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                e.target.classList.toggle('red-text'); // Change color of clicked item
+            }
+        });
+
+        // 7. Keyboard Event Handling
+        inputText.addEventListener('keydown', (e) => {
+            console.log(`Key "${e.key}" was pressed`);
+        });
+
+        // 8. Using Mouse Events
+        title.addEventListener('mouseover', () => {
+            title.style.backgroundColor = 'lightgray'; // Changes background on hover
+        });
+
+        title.addEventListener('mouseout', () => {
+            title.style.backgroundColor = ''; // Resets background on mouse out
+        });
+
+        // 9. Exploring DOM Properties
+        console.log(`Document Title: ${document.title}`);
+        console.log(`URL: ${document.URL}`);
+        console.log(`Content type: ${document.contentType}`);
+    </script>
+
+</body>
+</html>

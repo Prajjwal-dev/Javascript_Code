@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <style>
+        /* Basic navbar styling */
+        .navbar {
+            display: flex;
+            background-color: #333;
+            padding: 1em;
+        }
+        .navbar a {
+            color: white;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <script>
+        // Select the first element of the navbar and change its color to red
+        const navbar = document.querySelector('.navbar');
+        const firstNavItem = navbar.querySelector('a');
+        
+        // Apply red color to the first element in the navbar
+        firstNavItem.style.color = 'red';
+    </script>
+
+</body>
+</html>

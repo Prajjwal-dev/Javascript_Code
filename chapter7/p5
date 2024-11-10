@@ -1,0 +1,8 @@
+Which of the following is used to look for the farthest ancestor that matches a given CSS selector
+The method used in JavaScript to look for the farthest ancestor that matches a given CSS selector is:
+
+### `Element.closest(selector)`
+
+However, this method actually finds the **nearest ancestor** (including the element itself) that matches the given selector, moving up the DOM tree until a match is found. It will stop at the nearest matching element and won't continue searching beyond that.
+
+If your goal is to look for the nearest ancestor that matches a given selector, `closest()` is the right choice. If you're looking for a farthest ancestor that matches a selector, you may need to write a custom function to manually traverse the DOM tree upward.
