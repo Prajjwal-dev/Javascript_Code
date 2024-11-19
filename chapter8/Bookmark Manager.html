@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #bookmarkForm {
+            margin: 10px;
+        }
+        #bookmarkForm input {
+            padding: 8px;
+            margin: 5px;
+        }
+        #bookmarkList {
+            margin-top: 20px;
+            width: 50%;
+        }
+        .bookmark-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .bookmark-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bookmark Your Favorite Websites</h1>
+
+    <div id="bookmarkForm">
+        <input type="text" id="siteName" placeholder="Website Name" required>
+        <input type="text" id="siteUrl" placeholder="Website URL" required>
+        <button onclick="addBookmark()">Add Bookmark</button>
+    </div>
+
+    <div id="bookmarkList">
+        <h2>Your Bookmarks</h2>
+        <div id="bookmarks"></div>
+    </div>
+
+    <script>
+        // Load bookmarks from local storage on page load
+        document.addEventListener('DOMContentLoaded', loadBookmarks);
+
+        function addBookmark() {
+            const name = document.getElementById('siteName').value;
+            const url = document.getElementById('siteUrl').value;
+
+            // Validate form input
+            if (!name || !url) {
+                alert("Please enter both name and URL.");
+                return;
+            }
+
+            // Bookmark object
+            const bookmark = { name, url };
+
+            // Save to local storage
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            bookmarks.push(bookmark);
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+
+            // Clear input fields
+            document.getElementById('siteName').value = '';
+            document.getElementById('siteUrl').value = '';
+
+            loadBookmarks(); // Refresh bookmarks display
+        }
+
+        function loadBookmarks() {
+            const bookmarksDiv = document.getElementById('bookmarks');
+            bookmarksDiv.innerHTML = ''; // Clear the existing bookmarks
+
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            bookmarks.forEach((bookmark, index) => {
+                // Create a new bookmark div
+                const bookmarkItem = document.createElement('div');
+                bookmarkItem.className = 'bookmark-item';
+
+                // Bookmark link
+                const link = document.createElement('a');
+                link.href = bookmark.url;
+                link.target = '_blank';
+                link.textContent = bookmark.name;
+
+                // Delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = () => deleteBookmark(index);
+
+                // Append link and button to the bookmark item
+                bookmarkItem.appendChild(link);
+                bookmarkItem.appendChild(deleteBtn);
+
+                // Append the bookmark item to the bookmarks div
+                bookmarksDiv.appendChild(bookmarkItem);
+            });
+        }
+
+        function deleteBookmark(index) {
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            bookmarks.splice(index, 1);
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            loadBookmarks();
+        }
+    </script>
+
+</body>
+</html>

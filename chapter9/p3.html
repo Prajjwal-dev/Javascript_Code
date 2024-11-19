@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Rejection with Async/Await</title>
+</head>
+<body>
+    <h1>Promise Rejection Example</h1>
+
+    <script>
+        // Function that returns a promise that rejects after 3 seconds
+        function createRejectingPromise() {
+            return new Promise((_, reject) => {
+                setTimeout(() => {
+                    reject("Promise rejected after 3 seconds!");
+                }, 3000);
+            });
+        }
+
+        // Async function to handle the promise
+        async function handlePromise() {
+            try {
+                const result = await createRejectingPromise();
+                console.log(result); // This line won't execute as the promise rejects
+            } catch (error) {
+                console.error("Caught error:", error); // Handle the error
+            }
+        }
+
+        // Call the async function
+        handlePromise();
+    </script>
+</body>
+</html>

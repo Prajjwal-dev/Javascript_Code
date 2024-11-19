@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Alert Example</title>
+</head>
+<body>
+    <h1>Click the Buttons to See Different Alerts</h1>
+    
+    <button id="alert1">Show Alert 1</button>
+    <button id="alert2">Show Alert 2</button>
+    <button id="alert3">Show Alert 3</button>
+    
+    <script>
+        // Selecting the buttons by their IDs
+        const button1 = document.getElementById('alert1');
+        const button2 = document.getElementById('alert2');
+        const button3 = document.getElementById('alert3');
+
+        // Adding click event listeners for each button
+        button1.addEventListener('click', () => {
+            alert("This is Alert 1: Hello from the first button!");
+        });
+
+        button2.addEventListener('click', () => {
+            alert("This is Alert 2: You've clicked the second button!");
+        });
+
+        button3.addEventListener('click', () => {
+            alert("This is Alert 3: Third button clicked successfully!");
+        });
+    </script>
+</body>
+</html>

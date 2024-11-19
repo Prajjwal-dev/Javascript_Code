@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise.all() with Async/Await</title>
+</head>
+<body>
+    <h1>Promise.all() vs Sequential Await</h1>
+
+    <script>
+        // Simulating async tasks that take different times to complete
+        function simulateAsyncTask(duration, result) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(result);
+                }, duration);
+            });
+        }
+
+        // Async function using Promise.all() to await all promises concurrently
+        async function usePromiseAll() {
+            console.log("Using Promise.all() to run promises concurrently...");
+            const results = await Promise.all([
+                simulateAsyncTask(1000, 'Task 1 complete'),
+                simulateAsyncTask(2000, 'Task 2 complete'),
+                simulateAsyncTask(1500, 'Task 3 complete')
+            ]);
+            console.log("Results using Promise.all():", results);
+        }
+
+        // Async function awaiting promises one by one sequentially
+        async function awaitPromisesSequentially() {
+            console.log("Awaiting promises one by one...");
+            const result1 = await simulateAsyncTask(1000, 'Task 1 complete');
+            const result2 = await simulateAsyncTask(2000, 'Task 2 complete');
+            const result3 = await simulateAsyncTask(1500, 'Task 3 complete');
+            console.log("Results from sequential await:", [result1, result2, result3]);
+        }
+
+        // Call the functions
+        async function comparePromises() {
+            await usePromiseAll(); // Await all promises concurrently
+            console.log("-----");
+            await awaitPromisesSequentially(); // Await promises one by one
+        }
+
+        comparePromises();
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Bulb Effect</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style for the bulb */
+        .bulb {
+            width: 300px;  /* Increased width */
+            height: 400px; /* Original height */
+            background-color: #ffeb3b;
+            border-radius: 50% 50% 10% 10%;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 235, 59, 0.6);
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Glowing effect when the class is toggled */
+        .bulb.glowing {
+            box-shadow: 0 0 30px rgba(255, 235, 59, 1), 0 0 50px rgba(255, 235, 59, 0.7);
+        }
+
+        /* Style for the bulb filament */
+        .filament {
+            width: 20px;
+            height: 80px;
+            background-color: #ff9800;
+            position: absolute;
+            top: 140px;
+            left: 140px; /* Adjusted to be centered in the larger bulb */
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bulb" onclick="toggleGlow()">
+        <div class="filament"></div>
+    </div>
+    <p>Click the bulb to toggle the glow effect.</p>
+
+    <script>
+        // Function to toggle the glowing effect on the bulb
+        function toggleGlow() {
+            const bulb = document.querySelector('.bulb');
+            bulb.classList.toggle('glowing');
+        }
+    </script>
+
+</body>
+</html>

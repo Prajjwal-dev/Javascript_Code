@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load JS File with Async/Await</title>
+</head>
+<body>
+    <h1>Load JS File Using Async/Await</h1>
+    <button id="loadScript">Load Script</button>
+
+    <script>
+        // Function to load a JS file using async/await
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = src;
+                script.onload = () => resolve(`Script loaded: ${src}`);
+                script.onerror = () => reject(new Error(`Script load error: ${src}`));
+                document.head.appendChild(script);
+            });
+        }
+
+        // Async function to handle the script loading
+        async function handleScriptLoad() {
+            try {
+                const message = await loadScript("example.js");
+                alert(message); // Alert when script is successfully loaded
+            } catch (error) {
+                console.error(error); // Log error if the script fails to load
+            }
+        }
+
+        // Add event listener to the button
+        document.getElementById("loadScript").addEventListener("click", handleScriptLoad);
+    </script>
+</body>
+</html>
